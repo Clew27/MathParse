@@ -2,6 +2,7 @@
 #define __EVALUATOR_H__
 
 #include "expr.hpp"
+#include "exception.hpp"
 
 namespace visitor {
     class Evaluator : public expr::ExprVisitorInterface<int> { 
@@ -14,6 +15,9 @@ namespace visitor {
                 case expr::operation_t::MULT:
                     return left * right;
                 case expr::operation_t::DIV:
+                    if (right == 0) 
+                        raise_exception(exception_t::RUNTIME, 
+                            "Division by zero is not allowed.");
                     return left / right;
                 case expr::operation_t::ADD:
                     return left + right;
