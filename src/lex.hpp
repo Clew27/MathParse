@@ -3,9 +3,9 @@
 
 #include <string>
 #include <vector>
+#include <unordered_map>
 
-/**
- * Token Definitions 
+/** Token Definitions 
  * PLUS           +
  * MINUS          -
  * MULT           *
@@ -19,6 +19,8 @@ namespace lex {
     enum token_t {
         PLUS, MINUS, MULT, DIV, LPAREN, RPAREN, INTEGER
     };
+
+    extern std::unordered_map<token_t, std::string> token_name_map; 
 
     struct location {
         size_t line_no;

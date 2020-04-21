@@ -7,6 +7,16 @@ bool is_digit(char n) {
 }
 
 namespace lex {
+    std::unordered_map<token_t, std::string> token_name_map = {
+        {token_t::PLUS,    "TOK_PLUS"},
+        {token_t::MINUS,   "TOK_MINUS"},
+        {token_t::MULT,    "TOK_MULT"},
+        {token_t::DIV,     "TOK_DIV"},
+        {token_t::LPAREN,  "TOK_LPAREN"},
+        {token_t::RPAREN,  "TOK_RPAREN"},
+        {token_t::INTEGER, "TOK_INTEGER"}
+    };
+
     char Lexer::advance() {
         index++;
         if (index == input.length()) return '\0';
