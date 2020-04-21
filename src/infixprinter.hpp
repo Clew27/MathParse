@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "expr.hpp"
+#include "lex.hpp"
 
 namespace visitor {
     class InfixPrinter : public expr::ExprVisitorInterface<void> { 
@@ -11,17 +12,17 @@ namespace visitor {
             std::cout << "(";
             boost::apply_visitor(*this, expr.left);
 
-            switch(expr.op) {
-                case expr::operation_t::MULT:
+            switch(expr.op.type) {
+                case lex::token_t::MULT:
                     std::cout << " * ";
                     break;
-                case expr::operation_t::DIV:
+                case lex::token_t::DIV:
                     std::cout << " / ";
                     break;
-                case expr::operation_t::ADD:
+                case lex::token_t::PLUS:
                     std::cout << " + ";
                     break;
-                case expr::operation_t::SUB:
+                case lex::token_t::MINUS:
                     std::cout << " - ";
                     break;
             }
