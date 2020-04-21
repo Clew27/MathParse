@@ -59,20 +59,31 @@ namespace parse {
     }
     
     expr::expr_t Parser::parse_multiplication() {
-        expr::expr_t multiplication = parse_primary();
+        expr::expr_t multiplication = parse_power();
 
         lex::Token* next = consume({lex::token_t::MULT, lex::token_t::DIV});
         while (next != nullptr) {
-            expr::expr_t rhs = parse_primary();
+            expr::expr_t rhs = parse_power();
             multiplication = expr::Binary(multiplication, *next, rhs);
             next = consume({lex::token_t::MULT, lex::token_t::DIV});
         }
         return multiplication;
     }
 
+    expr::expr_t Parser::parse_power() {
+        expr::expr_t power = parse_primary();
+        lex::Token* next = consume(lex::token_t::POWER);
+        while (next != nullptr){
+            expr::expr_t rhs = parse_power();
+            power = expr::Binary(power, *next, rhs);
+            next = consume(lex::token_t::POWER);
+        }
+        return power;
+    }
+
     expr::expr_t Parser::parse_primary() {
         if (peek() == nullptr)
-            raise_exception(exception_t::PARSE, "Expecting TOK_LPAREN TOK_INTEGER.");
+            raise_exception(exception_t::PARSE, "Expecting '(' or integer.");
         
         lex::Token* next_tok = advance();
         switch (next_tok->type) {

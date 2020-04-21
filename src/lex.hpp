@@ -10,6 +10,7 @@
  * MINUS          -
  * MULT           *
  * DIV            /
+ * POWER          ^
  * LPAREN         (
  * RPAREN         )
  * INTEGER        0|([1-9][0-9]*)
@@ -17,7 +18,7 @@
 
 namespace lex {
     enum token_t {
-        PLUS, MINUS, MULT, DIV, LPAREN, RPAREN, INTEGER
+        PLUS, MINUS, MULT, DIV, POWER, LPAREN, RPAREN, INTEGER
     };
 
     extern std::unordered_map<token_t, std::string> token_name_map; 

@@ -73,6 +73,10 @@ namespace lex {
                     tokens.push_back({token_t::DIV, cur_pos, "/"});
                     break;
                 }
+                case '^': {
+                    tokens.push_back({token_t::POWER, cur_pos, "^"});
+                    break;
+                }
                 case '0': {
                     /// Zero is a special case
                     /// There can only be one zero followed by no digits

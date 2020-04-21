@@ -1,6 +1,7 @@
 #ifndef __EVALUATOR_H__
 #define __EVALUATOR_H__
 
+#include <math.h>
 #include "expr.hpp"
 #include "exception.hpp"
 
@@ -23,6 +24,8 @@ namespace visitor {
                     return left + right;
                 case lex::token_t::MINUS:
                     return left - right;
+                case lex::token_t::POWER:
+                    return pow(left, right);
             }
         }
 

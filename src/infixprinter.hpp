@@ -25,6 +25,9 @@ namespace visitor {
                 case lex::token_t::MINUS:
                     std::cout << " - ";
                     break;
+                case lex::token_t::POWER:
+                    std::cout << " ^ ";
+                    break;
             }
 
             boost::apply_visitor(*this, expr.right);

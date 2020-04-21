@@ -15,16 +15,19 @@ namespace visitor {
 
             switch(expr.op.type) {
                 case lex::token_t::MULT:
-                    std::cout << " * ";
+                    std::cout << " *";
                     break;
                 case lex::token_t::DIV:
-                    std::cout << " / ";
+                    std::cout << " /";
                     break;
                 case lex::token_t::PLUS:
-                    std::cout << " + ";
+                    std::cout << " +";
                     break;
                 case lex::token_t::MINUS:
-                    std::cout << " - ";
+                    std::cout << " -";
+                    break;
+                case lex::token_t::POWER:
+                    std:: cout << " ^";
                     break;
             }
         }

@@ -9,9 +9,15 @@
 /** Grammar
  * expr           -> addition
  * addition       -> multiplication (('+' | '-') multiplication)*
- * multiplication -> primary (('*' | '/') primary)*
+ * multiplication -> power (('*' | '/') power)*
+ * power          -> primary ('^' primary)*
  * primary        -> INTEGER
  *                 | '(' expr ')'
+ * 
+ * Precedence
+ * Highest ^ '^' (r)
+ *         | '*' '/'
+ * Lowest  v '+' '-'
  */
 
 namespace parse {
@@ -28,6 +34,7 @@ namespace parse {
         inline expr::expr_t parse_expr();
         expr::expr_t parse_addition();
         expr::expr_t parse_multiplication();
+        expr::expr_t parse_power();
         expr::expr_t parse_primary();
 
     public:
