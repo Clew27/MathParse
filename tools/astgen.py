@@ -6,7 +6,7 @@ TAB            = ' ' * SPACES_PER_TAB
 def main():
     hpp_file = create_ast('Expr',
         [
-            'Binary  : Expr left, operation_t op, Expr right',
+            'Binary  : Expr left, lex::Token op, Expr right',
             'Literal : int val'
         ]
     )
@@ -36,9 +36,10 @@ def parse_types_list(base_name, types_list):
     '''
     parsed_list = list()
     for type_def in types_list:
-        node_name, field_defs = type_def.split(':')
-        node_name = node_name.strip()
-        
+        type_def = type_def.split(':')
+        node_name = type_def[0].strip()
+
+        field_defs = ":".join(type_def[1:])        
         fields = list()
         for field_def in field_defs.split(','):
             field_type, field_name = field_def.strip().split(' ')
@@ -70,6 +71,7 @@ def prepend_includes(body):
     '''Prepends required include statements to the top of the file.'''
     includes = [
         '#include <boost/variant.hpp>',
+        '#include "lex.hpp"',
         '',
     ]
     return includes + body

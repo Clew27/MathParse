@@ -2,14 +2,11 @@
 #define __EXPR_H__
 
 #include <boost/variant.hpp>
+#include "lex.hpp"
 
 namespace expr {
     class Binary;
     class Literal;
-
-    enum operation_t {
-        MULT, DIV, ADD, SUB
-    };
 
     using expr_t = boost::variant<
         boost::recursive_wrapper<Binary>,
@@ -26,10 +23,10 @@ namespace expr {
     class Binary{
     public:
         expr_t left;
-        operation_t op;
+        lex::Token op;
         expr_t right;
 
-        Binary(expr_t left_, operation_t op_, expr_t right_)
+        Binary(expr_t left_, lex::Token op_, expr_t right_)
             : left(left_)
             , op(op_)
             , right(right_)
