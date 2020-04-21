@@ -4,7 +4,6 @@
 #include <iostream>
 #include <string>
 #include <exception>
-#include <sstream>
 
 enum exception_t {
     LEX, PARSE, RUNTIME
